@@ -18,21 +18,21 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-// const allowedOrigins = ["http://localhost:5000"];
+const allowedOrigins = ["https://ecomerco-app-abdel.onrender.com/"];
 
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (allowedOrigins.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed"));
-//     }
-//   },
-// };
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed"));
+    }
+  },
+};
 
-// // Use CORS middleware for all routes except the root
+// Use CORS middleware for all routes except the root
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.use(
   fileupload({
