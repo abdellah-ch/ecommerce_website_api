@@ -8,7 +8,7 @@ const app = express();
 
 const mongoose = require("mongoose");
 
-// const cors = require("cors");
+const cors = require("cors");
 
 const fileupload = require("express-fileupload");
 
@@ -18,21 +18,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-// const allowedOrigins = ["https://ecomerco-app-abdel.onrender.com/"];
-
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (allowedOrigins.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed"));
-//     }
-//   },
-// };
-
-// Use CORS middleware for all routes except the root
-
-// app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(
   fileupload({
