@@ -30,6 +30,10 @@ app.use("/user", require("./routes/userrouter"));
 
 app.use("/api", require("./routes/categoryRouter"));
 
+app.use('/api',require('./routes/upload'))
+
+app.use('/api',require('./routes/productrouter'))
+
 //connect to db
 const uri = process.env.mongo_url;
 
@@ -43,7 +47,7 @@ mongoose.connect(uri, (err) => {
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../", "client", "build", "index.html"));
 });
 
