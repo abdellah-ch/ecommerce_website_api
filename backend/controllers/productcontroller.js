@@ -36,15 +36,25 @@ const productcontroller = {
     },
     deleteProduct : async(req,res)=>{
         try {
-            
+            await Products.findByIdAndDelete(req.params.id )
+            res.json({msg:"deleted"})
         } catch (error) {
-            
+            return res.status(500).json({msg:error.message})
         }
     },
     updateProduct : async(req,res)=>{
         try {
-            
+            const {title,price,description,content,images,category} =req.body;
+            if(!images)
+            return res.status(500).json({msg:'pls upload image'})
+
+            await Products.findOneAndUpdate({_id:req.params.id},{
+                title:title.toLowerCase(),price,description,content,images,category
+            })
+
+            res.json({msg:"updated"})
         } catch (error) {
+            return res.status(500).json({msg:error.message})
             
         }
     },
