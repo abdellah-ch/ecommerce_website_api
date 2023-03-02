@@ -21,9 +21,11 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use(
+
   fileupload({
     useTempFiles: true,
   })
+
 );
 //routes
 app.use("/user", require("./routes/userrouter"));
@@ -48,11 +50,15 @@ mongoose.connect(uri, (err) => {
 app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("*", (req, res) => {
+
   res.sendFile(path.resolve(__dirname, "../", "client", "build", "index.html"));
+  
 });
 
 const PORT = process.env.port || 5000;
 
 app.listen(PORT, () => {
+
   console.log("server is running on port", PORT);
+
 });
