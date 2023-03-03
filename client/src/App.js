@@ -1,21 +1,30 @@
-import './App.css';
 import React from 'react';
-// import axios from 'axios'
+
+import {DataProvider} from './GlobaleState'
+
+import {BrowserRouter as Router} from 'react-router-dom'
+
+import Header from './Components/Headers/Header'
+
+import MainPages from './Components/mainPgaes/Pages'
+
 function App() {
-  const [data,setData] =React.useState()
-  React.useEffect(()=>{
-    const fetchData = async()=>{
-      const response = await axios.get("/api/category")
-      console.log(response);
-    }
-    fetchData().catch((err)=>{
-console.log(err);
-    })
-  },[])
+ 
   return (
-    <div className="App">
-          .......///......
-      </div>
+    <DataProvider>
+
+      <Router>
+
+          <div className="App">
+
+            Hello   
+
+          </div>
+
+      </Router>
+
+    </DataProvider>
+
   );
 }
 
