@@ -4,37 +4,71 @@ const Products = require('../models/ProductModel')
 
 class APIfeatures{
 
-    constructor(query,queryString){
+    constructor(query,queryString={}){
 
         this.query = query;
 
-        this.queryString=queryString;
+        this.queryString=queryString; 
 
     }
     filtering(){
 
         const queryObj ={...this.queryString} //queryString = req.query
 
-        console.log(queryObj);
+        // console.log(queryObj);
 
         const exludedFields = ['page','sort','limit']
 
-        exludedFields.forEach(el=> delete(queryObj[el])) //delete the elements in the array fromv queryObj object
+        exludedFields.forEach(el=> delete(queryObj[el])) //delete the elements in the array from queryObj object
 
         let queryStr = JSON.stringify(queryObj)
 
-        console.log({queryStr});
+        // console.log({queryStr});
 
-        queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g,match=>'$' + match) //'\b ensuring that the matches occur only as separate words and not as part of larger words' /g indicates that the replacement should be global__  price[gt]=121==>"price":{"$gt":"121"}}"
+        queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g,match=>'$' + match) //'\b ensuring that the matches occur only as separate words and not as part of larger words' /g indicates that the replacement should be global__  price[gt]=121==>""price":{"$gt":"121"}}"
 
         this.query.find(JSON.parse(queryStr))
 
         return this
     };
 
-    sorting(){}
+    sorting(){
 
-    pagination(){}
+        if(this.queryString.sort){
+
+            const sortBy =  this.queryString.sort.split(',').join(' ')
+
+            console.log(sortBy);
+
+            this.query = this.query.sort(sortBy)
+
+        }else{
+
+            this.query = this.query.sort('-createdAt')
+
+        }
+
+        return this;
+    }
+
+    pagination(){
+
+         const page = this.queryString.page * 1 || 1 // * 1 covert page value to a number
+
+         const limit = this.queryString.limit * 1 || 9 // * 1 covert limit value to a number
+        
+         const skip = (page - 1) * limit
+
+         this.query = this.query.skip(skip).limit(limit)
+
+        //  The skip() method is called on the MongoDB query object to skip the first 'skip' documents in the collection.
+
+        //  The limit() method is called on the MongoDB query object to limit the number of documents returned to limit.
+         
+        //  The query property of the APIfeatures instance is updated to the new query object, which includes the skip() and limit() methods.
+
+        return this
+    }
 }
 
 const productcontroller = {
@@ -43,11 +77,25 @@ const productcontroller = {
 
         try {
 
-            const features = new APIfeatures(Products.find(),req.query).filtering()
+            const features = new APIfeatures(Products.find({}),req.query)
+            
+            .filtering()
+            
+            .sorting()
+
+            .pagination()
 
             const products = await features.query //query is the parametre Products.find()
 
-            res.json(products)
+            res.json({
+
+                status : 'success',
+
+                result : products.length,
+
+                products : products
+        
+                    })
 
         } catch (error) {
 
