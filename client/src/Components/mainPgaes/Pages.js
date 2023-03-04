@@ -7,6 +7,7 @@ function Pages() {
     <div>Pages</div>
     
   )
+  
 }
 
 export default Pages

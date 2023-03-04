@@ -17,7 +17,9 @@ function App() {
 
           <div className="App">
 
-            Hello   
+            <Header/>   
+
+            <MainPages/>
 
           </div>
 
