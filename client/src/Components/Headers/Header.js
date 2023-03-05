@@ -8,6 +8,8 @@ import close from './icons/xmark-solid.svg'
 
 import Cart from './icons/cart-shopping-solid.svg'
 
+import logo from './icons/logo.png'
+
 import {Link} from 'react-router-dom'
 
 function Header() {
@@ -24,17 +26,18 @@ function Header() {
 
       </div>
 
-      <div>
+      <div className='logo'>
 
         <h1>
 
-          <Link to="/">Shop</Link>
+          <Link to="/"><img src= {logo} width="70"/></Link>
 
         </h1>
 
       </div>
       
       <ul>
+        <li><Link to="/">Home</Link></li>
 
         <li><Link to="/">Products</Link></li>
 
@@ -42,7 +45,7 @@ function Header() {
         
         <li>
 
-          <img src={close} width="30"/>
+          <img className='menu' src={close} width="30"/>
 
         </li>
 
