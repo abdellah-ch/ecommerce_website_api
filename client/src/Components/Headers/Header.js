@@ -33,7 +33,7 @@ function Header() {
           <Link to="/"><img src= {logo} width="70"/></Link>
 
         </h1>
-
+      
       </div>
       
       <ul>
