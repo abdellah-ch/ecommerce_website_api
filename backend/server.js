@@ -43,7 +43,7 @@ mongoose.connect(uri, (err) => {
   if (err) throw err;
 
   console.log("connected to MongoDb");
-});
+}); 
 
 //server setup
 

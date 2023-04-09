@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {DataProvider} from './GlobaleState'
 
 import {BrowserRouter as Router} from 'react-router-dom'
 
@@ -11,7 +10,7 @@ import MainPages from './Components/mainPgaes/Pages'
 function App() {
  
   return (
-    <DataProvider>
+ 
 
       <Router>
 
@@ -25,7 +24,6 @@ function App() {
 
       </Router>
 
-    </DataProvider>
 
   );
 }

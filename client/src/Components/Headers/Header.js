@@ -1,6 +1,6 @@
-import React,{useState,useContext} from 'react'
+import React from 'react'
 
-import {GlobaleState} from '../../GlobaleState'
+// import {GlobaleState} from '../../GlobaleState'
 
 import Menu from './icons/bars-solid.svg'
 
@@ -14,7 +14,7 @@ import {Link} from 'react-router-dom'
 
 function Header() {
 
-  const value = useContext(GlobaleState)
+  // const value = useContext(GlobaleState)
 
   return (
 
@@ -30,7 +30,7 @@ function Header() {
 
         <h1>
 
-          <Link to="/"><img src= {logo} width="70"/></Link>
+          <Link to="/"><img src= {logo} alt='' width="70"/></Link>
 
         </h1>
       
@@ -39,13 +39,13 @@ function Header() {
       <ul>
         <li><Link to="/">Home</Link></li>
 
-        <li><Link to="/">Products</Link></li>
+        <li><Link to="/Products">Products</Link></li>
 
-        <li><Link to="/">Login/Sign up</Link></li>
+        <li><Link to="/Login">Login/Sign up</Link></li>
         
         <li>
 
-          <img className='menu' src={close} width="30"/>
+          <img className='menu' alt='' src={close} width="30"/>
 
         </li>
 
@@ -55,9 +55,9 @@ function Header() {
 
         <span>0</span>
 
-        <Link>
+        <Link to="/Cart">
 
-        <img src={Cart} width="30"/>
+        <img src={Cart} alt='' width="30"/>
         
         </Link>
 

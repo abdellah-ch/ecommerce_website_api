@@ -6,11 +6,15 @@ import App from './App';
 
 import './index.css'
 
+import {DataProvider} from './GlobaleState'
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-
+    <DataProvider>
     <App />
+    </DataProvider>
 
 );
 
