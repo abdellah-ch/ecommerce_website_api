@@ -12,10 +12,10 @@ export const DataProvider = ({children}) =>{
 
 
     const state = {
-        
+
         token : [token,setToken],
 
-        productsapi:ProductsApi()
+        productsapi : ProductsApi()
     }
 
 
