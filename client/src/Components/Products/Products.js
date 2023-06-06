@@ -9,8 +9,6 @@ function Products() {
 
   const [products] = state.productsapi.products;
 
-  console.log(products);
-
   return <div className="products">{
     products.map((item)=>{
       return <ProductItem key={item._id} product={item} />

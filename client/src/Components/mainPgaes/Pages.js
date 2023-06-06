@@ -2,6 +2,8 @@ import React from "react";
 
 import Products from "../Products/Products";
 
+import DetailProduct from "../DetailProduct/DetailProduct";
+
 import Cart from "../Cart/Cart";
 
 import Login from "../auth/Login";
@@ -19,6 +21,8 @@ function Pages() {
     <Routes>
       <Route path="/Products" element={<Products />} />
 
+      <Route path="/Products/detail/:id" element={<DetailProduct />} />
+
       <Route path="/" element={<Home />} />
 
       <Route path="/Cart" element={<Cart />} />
@@ -28,6 +32,7 @@ function Pages() {
       <Route path="/Register" element={<Register />} />
 
       <Route path="*" element={<Notfound />} />
+      
     </Routes>
   );
 }
